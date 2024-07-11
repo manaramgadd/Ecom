@@ -12,6 +12,8 @@ class Client extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $guard = "client";
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,8 +21,14 @@ class Client extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'picture',
+        'address',
+        'phone',
+        'email_verified_at',
+        'status'
     ];
 
     /**
@@ -43,3 +51,4 @@ class Client extends Authenticatable
         'password' => 'hashed',
     ];
 }
+

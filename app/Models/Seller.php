@@ -12,6 +12,8 @@ class Seller extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $guard = "seller";
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,8 +21,17 @@ class Seller extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'picture',
+        'address',
+        'phone',
+        'email_verified_at',
+        'verified',
+        'status',
+        'payment_method',
+        'payment_email'
     ];
 
     /**
@@ -42,4 +53,12 @@ class Seller extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getPictureAttribute($value){
+        if( $value ){
+            return asset('/images/users/sellers/'.$value);
+        }else{
+            return asset('/images/users/default-avatar.png');
+        }
+    }
 }
